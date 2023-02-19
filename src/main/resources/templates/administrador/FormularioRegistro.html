@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Formulario de Registro</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+    
+        li {
+            float: left;
+        }
+    
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+    
+        li a:hover {
+            background-color: #111111;
+        }
+
+
+    </style>
+</head>
+<body>
+<h2>""</h2>
+<ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#Productos">Productos</a></li>
+    <li><a href="#Contactanos">Contactanos</a></li>
+    <li><a href="#Acerca de Nosotros">Acerca de Nosotros</a></li>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <br>
+    <link rel="stylesheet" href="main.css"/>
+    </head>
+
+    <body>
+    <div class="buscar">
+        <input type="text" placeholder="Buscar" required/>
+        <div class="btn">
+            <i class="fas fa-search icon"></i>
+        </div>
+    </div>
+</ul>
+<nav></nav>
+
+
+<form action="/usuario/register" method="post" enctype="text/plain">
+    <h1>Formulario de Registro</h1>
+    <input type="email" name="correoElectronico" placeholder="Correo Electronico" required id="">
+    <input type="password" name="contrasena" placeholder="Contraseña" required id="">
+    <input type="text" name="nombres" placeholder="Nombres" required id="">
+    <input type="text" name="apellidos" placeholder="Apellidos" required id="">
+    <!--<fieldset>
+        <legend>Tipo de Documento</legend>
+        <select>
+            <option>Cedula</option>
+            <option>Pasaporte</option>
+            <option>Cedula Extranjeria</option>
+        </select>
+    </fieldset>-->
+    <input type="number" name="nDocumento" placeholder="Cedula" id="">
+    <!--<input type="text" name="genero" placeholder="Genero" id="">-->
+    <button type="submit">Registrarse</button>
+    <p class="link"><a href="login.html">Iniciar Sesión?</a></p>
+
+</form>
+
+<!--<form action="/usuario/all" method="get" >-->
+<!--    <h1>Formulario de Consultar</h1>-->
+
+
+<!--    <button type="submit">Consultar</button>-->
+
+
+<!--</form>-->
+</body>
+</html>
