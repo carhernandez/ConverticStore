@@ -2,6 +2,7 @@ package com.CONVERTICSHOP.demo.services.ProductoService;
 
 import com.CONVERTICSHOP.demo.modelo.*;
 import com.CONVERTICSHOP.demo.repository.ProductoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,17 @@ public class ProductServicesImpl implements ProductoService {
 
     @Autowired
     ProductoRepository productoRepository;
+
+
     @Override
     public List<Producto> obtenerTodos() throws Exception {
         return productoRepository.findAll();
     }
 
-    @Override
+   /* @Override
     public Producto crearProducto(Producto producto) throws Exception {
         return productoRepository.save(producto);
-    }
+    }*/
 
     @Override
     public Producto actualizarProducto(Integer idProducto) throws Exception {
@@ -33,9 +36,20 @@ public class ProductServicesImpl implements ProductoService {
     }
 
     @Override
-    public Producto obtenerProductoPorGenero(Integer IdGenero) throws Exception {
-        return productoRepository.findById(IdGenero).get();
-    }
+    @Transactional
+    public Producto crearProducto(Producto producto) throws Exception {
+        try {
+            producto.setMarca(productoRepository.findById(producto.getMarca().getIdMarca()).get().getMarca());
+            producto.setColor(productoRepository.findById(producto.getColor().getIdColor()).get().getColor());
+            producto.setGenero(productoRepository.findById(producto.getGenero().getIdGenero()).get().getGenero());
+            producto.setTalla(productoRepository.findById(producto.getTalla().getIdTalla()).get().getTalla());
+            return productoRepository.save(producto);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+
+
 
 
 
@@ -181,4 +195,5 @@ public class ProductServicesImpl implements ProductoService {
     }*/
 
 
+}
 }

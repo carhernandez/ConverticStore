@@ -46,10 +46,10 @@ public class ProductoController {
         return new ResponseEntity<>(productoService.crearProducto(producto), HttpStatus.CREATED);
     }
 
-    @GetMapping (value = "/genero/{idGenero}")
+    /*@GetMapping (value = "/genero/{idGenero}")
     public ResponseEntity<List<Producto>> getProductosPorGenero(@PathVariable("idGenero") Integer idGenero) throws Exception {
-        return ResponseEntity.ok(Collections.singletonList(productoService.obtenerProductoPorGenero(idGenero)));
-    }
+        return ResponseEntity.ok((List<Producto>) productoService.obtenerProductosPorGenero(idGenero));
+    }*/
 
 
 

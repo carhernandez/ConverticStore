@@ -18,7 +18,4 @@ public interface ProductoService {
 
     String borrarProducto (Integer idTipoDocumento) throws Exception;
 
-    Producto obtenerProductoPorGenero(Integer IdGenero) throws Exception;
-
-
 }
