@@ -18,6 +18,10 @@ public class Envio {
     @JoinColumn(name = "factura", referencedColumnName = "id_factura")
     Factura factura;
 
+    @ManyToOne(targetEntity = Ciudad.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ciudad", referencedColumnName = "id_ciudad")
+    Ciudad ciudad;
+
     private String direccion;
 
     private String telefono;

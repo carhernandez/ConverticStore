@@ -9,7 +9,7 @@ public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca")
-    private int idMarca;
+    private Integer idMarca;
 
     @Column(name = "marca")
     private String marca;
@@ -21,11 +21,11 @@ public class Marca {
     public Marca() {
     }
 
-    public int getIdMarca() {
+    public Integer getIdMarca() {
         return idMarca;
     }
 
-    public void setIdMarca(int idMarca) {
+    public void setIdMarca(Integer idMarca) {
         this.idMarca = idMarca;
     }
 

@@ -11,7 +11,7 @@ public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id_color")
-    private Long idColor;
+    private int idColor;
     private String color;
 
     public Color() {
@@ -22,11 +22,11 @@ public class Color {
 
     }
 
-    public Long getIdColor() {
+    public int getIdColor() {
         return idColor;
     }
 
-    public void setIdColor(Long idColor) {
+    public void setIdColor(int idColor) {
         this.idColor = idColor;
     }
 

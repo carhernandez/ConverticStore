@@ -1,20 +1,61 @@
 package com.CONVERTICSHOP.demo.services.ProductoService;
 
-import com.CONVERTICSHOP.demo.modelo.Producto;
-import com.CONVERTICSHOP.demo.repository.ProductRepository;
+import com.CONVERTICSHOP.demo.modelo.*;
+import com.CONVERTICSHOP.demo.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ProductServicesImpl implements ProductService {
+public class ProductServicesImpl implements ProductoService {
 
     @Autowired
-    private ProductRepository productRepository;
+    ProductoRepository productoRepository;
+    @Override
+    public List<Producto> obtenerTodos() throws Exception {
+        return productoRepository.findAll();
+    }
+
+    @Override
+    public Producto crearProducto(Producto producto) throws Exception {
+        return productoRepository.save(producto);
+    }
+
+    @Override
+    public Producto actualizarProducto(Integer idProducto) throws Exception {
+        return null;
+    }
+
+    @Override
+    public String borrarProducto(Integer idTipoDocumento) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Producto obtenerProductoPorGenero(Integer IdGenero) throws Exception {
+        return productoRepository.findById(IdGenero).get();
+    }
+
+
+
+
+
+
+   /* @Autowired
+    private ProductoRepository productRepository;
+    @Autowired
+    private ColorRepository colorRepository;
+
+    @Autowired
+    private MarcaRepository marcaRepository;
+
+    private Color color;
+    private Marca marca;
+
+    private Genero genero;
+
+    private Talla talla;
 
     //obtener todos los Productos
     @Override
@@ -32,7 +73,6 @@ public class ProductServicesImpl implements ProductService {
     @Transactional
     public Producto crearProducto(Producto producto) throws Exception {
         try {
-
             return productRepository.save(producto);
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -48,11 +88,11 @@ public class ProductServicesImpl implements ProductService {
     //Borrar un Producto
     @Override
     @Transactional
-    public String borrarProducto(Integer IdUsuario) throws Exception {
+    public String borrarProducto(Integer idProducto) throws Exception {
         try {
-            productRepository.findById(IdUsuario)
-                    .orElseThrow(() -> new ResourceNotFoundException("Producto no existe con esa id :" + IdUsuario));
-            productRepository.deleteById(IdUsuario);
+            productRepository.findById(idProducto)
+                    .orElseThrow(() -> new ResourceNotFoundException("Producto no existe con esa id :" + idProducto));
+            productRepository.deleteById(idProducto);
             return "se borro el producto correctamente ";
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -63,10 +103,10 @@ public class ProductServicesImpl implements ProductService {
     public Optional<Producto> obtenerProductoPorId(int idProducto) {
         return productRepository.findById(idProducto);
     }
-
+*/
 
    /* @Autowired
-    private ProductRepository productosRepository;
+    private ProductoRepository productosRepository;
 
     //obtener todos los usuario
     public ResponseEntity<List<Producto>> getAllProductos() {

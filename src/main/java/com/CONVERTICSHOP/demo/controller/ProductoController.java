@@ -1,21 +1,24 @@
 package com.CONVERTICSHOP.demo.controller;
 
 import com.CONVERTICSHOP.demo.modelo.Producto;
-import com.CONVERTICSHOP.demo.services.ProductoService.ProductService;
+import com.CONVERTICSHOP.demo.modelo.Usuario;
+import com.CONVERTICSHOP.demo.services.ProductoService.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
 @RequestMapping("/producto")
-public class ProductController {
+public class ProductoController {
 
    @Autowired
-   private ProductService productService;
+   private ProductoService productoService;
 
    @GetMapping("")
     public String registro() {
@@ -24,22 +27,36 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity <List<Producto>> getProductos() throws Exception {
-        return ResponseEntity.ok(productService.obtenerTodos());
+        return ResponseEntity.ok(productoService.obtenerTodos());
     }
 
-    @PostMapping("/register")
+    /*@PostMapping ("/register")
+    private ResponseEntity<Producto> saveDocuments(@RequestBody Producto producto){
+        try{
+            Producto producto1= productService.crearProducto(producto);
+            return ResponseEntity.created(new URI("/producto/"+producto1.getIdProducto())).body(producto1);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+    }*/
+
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Producto> createProducto(@RequestBody Producto producto) throws Exception {
-        return new ResponseEntity<>(productService.crearProducto(producto), HttpStatus.CREATED);
+        return new ResponseEntity<>(productoService.crearProducto(producto), HttpStatus.CREATED);
     }
 
-    @PostMapping ("/update")
+    @GetMapping (value = "/genero/{idGenero}")
+    public ResponseEntity<List<Producto>> getProductosPorGenero(@PathVariable("idGenero") Integer idGenero) throws Exception {
+        return ResponseEntity.ok(Collections.singletonList(productoService.obtenerProductoPorGenero(idGenero)));
+    }
+
+
+
+   /* @PostMapping ("/update")
     public ResponseEntity <Producto> updateProducto(@RequestBody Producto producto) {
     return null;
-    }
-
-
-
-
+    }*/
 
 
     /*@DeleteMapping("/delete/{idProducto}")*/

@@ -1,7 +1,6 @@
 package com.CONVERTICSHOP.demo.modelo;
 
 import jakarta.persistence.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 @Entity

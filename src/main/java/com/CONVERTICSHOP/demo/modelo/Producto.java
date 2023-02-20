@@ -13,7 +13,7 @@ public class Producto {
 
     @ManyToOne(targetEntity = Marca.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "marca", referencedColumnName = "id_marca")
-    private String marca;
+    private Marca marca;
 
     @ManyToOne(targetEntity = Color.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "color", referencedColumnName = "id_color")
@@ -24,13 +24,13 @@ public class Producto {
     @ManyToOne(targetEntity = Talla.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "talla", referencedColumnName = "id_talla")
     private Talla talla;
-    private Integer valor;
+    private Float valor;
     private Integer cantidad;
 
     public Producto() {
     }
 
-    public Producto(String descripcion, String marca, Color color, Genero genero, Talla talla, Integer valor, Integer cantidad) {
+    public Producto(String descripcion, Marca marca, Color color, Genero genero, Talla talla, Float valor, Integer cantidad) {
         this.descripcion = descripcion;
         this.marca = marca;
         this.color = color;
@@ -56,11 +56,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 
@@ -88,11 +88,11 @@ public class Producto {
         this.talla = talla;
     }
 
-    public Integer getValor() {
+    public Float getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(Float valor) {
         this.valor = valor;
     }
 
