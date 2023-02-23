@@ -1,6 +1,7 @@
 package com.CONVERTICSHOP.demo.services.ProductoService;
 
 import com.CONVERTICSHOP.demo.modelo.Producto;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public interface ProductoService {
     Producto actualizarProducto(Integer idProducto) throws Exception;
 
 
-    String borrarProducto (Integer idTipoDocumento) throws Exception;
+    String borrarProducto(Integer idTipoDocumento) throws Exception;
+
+    Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception;
+
+   /* @Query(value = "FROM producto where genero = :idGenero")
+    List<Producto> getProductoByGenero(int idGenero);*/
+
 
 }

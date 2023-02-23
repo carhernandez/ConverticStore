@@ -1,39 +1,66 @@
 package com.CONVERTICSHOP.demo.services.ProductoService;
 
 import com.CONVERTICSHOP.demo.modelo.*;
+import com.CONVERTICSHOP.demo.repository.GeneroRepository;
 import com.CONVERTICSHOP.demo.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ProductServicesImpl implements ProductoService {
+
 
     @Autowired
     ProductoRepository productoRepository;
 
 
     @Override
+    @Transactional
     public List<Producto> obtenerTodos() throws Exception {
         return productoRepository.findAll();
     }
 
-   /* @Override
-    public Producto crearProducto(Producto producto) throws Exception {
-        return productoRepository.save(producto);
-    }*/
-
     @Override
+    @Transactional
     public Producto actualizarProducto(Integer idProducto) throws Exception {
         return null;
     }
 
     @Override
+    @Transactional
     public String borrarProducto(Integer idTipoDocumento) throws Exception {
         return null;
     }
+
+    @Override
+    @Transactional
+    public Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception {
+        return null;
+    }
+
+   /* @Override
+    public Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception {
+        return (Producto) productoRepository.findByIdGenero(idGenero).get(idGenero);
+    }*/
+
+    /*@Override
+    @Transactional
+    public List<Producto> getProductoByGenero(int idGenero) {
+        List<Producto> productos = productoRepository.getProductoByGenero(idGenero);
+        productos.forEach(producto -> {
+            System.out.println(producto.toString());
+        });
+
+        return productoRepository.getProductoByGenero(idGenero);
+    }*/
+
+
 
     @Override
     @Transactional
@@ -44,15 +71,17 @@ public class ProductServicesImpl implements ProductoService {
             producto.setGenero(productoRepository.findById(producto.getGenero().getIdGenero()).get().getGenero());
             producto.setTalla(productoRepository.findById(producto.getTalla().getIdTalla()).get().getTalla());
             return productoRepository.save(producto);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
 
-
-
-
-
-
+       /* public void incrementarContadorBusquedas (Integer idProducto) throws Exception {
+                Optional < Producto > contadorProducto = productoRepository.findById(idProducto);
+        if (contadorProducto.isPresent()) {
+            Producto producto1 = contadorProducto.get();
+            producto.setMasBuscados(producto.getMasBuscados() + 1);
+            productoRepository.save(producto1);
+        }*/
 
 
 
@@ -63,13 +92,6 @@ public class ProductServicesImpl implements ProductoService {
 
     @Autowired
     private MarcaRepository marcaRepository;
-
-    private Color color;
-    private Marca marca;
-
-    private Genero genero;
-
-    private Talla talla;
 
     //obtener todos los Productos
     @Override
@@ -195,5 +217,5 @@ public class ProductServicesImpl implements ProductoService {
     }*/
 
 
-}
+    }
 }

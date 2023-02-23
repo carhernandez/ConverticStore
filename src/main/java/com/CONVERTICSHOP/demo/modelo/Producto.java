@@ -27,10 +27,13 @@ public class Producto {
     private Float valor;
     private Integer cantidad;
 
+    private Integer masBuscados;
+
     public Producto() {
     }
 
-    public Producto(String descripcion, Marca marca, Color color, Genero genero, Talla talla, Float valor, Integer cantidad) {
+    public Producto(String descripcion, Marca marca, Color color, Genero genero, Talla talla, Float valor,
+                    Integer cantidad, Integer masBuscados) {
         this.descripcion = descripcion;
         this.marca = marca;
         this.color = color;
@@ -38,6 +41,15 @@ public class Producto {
         this.talla = talla;
         this.valor = valor;
         this.cantidad = cantidad;
+        this.masBuscados = masBuscados;
+    }
+
+    public Integer getMasBuscados() {
+        return masBuscados;
+    }
+
+    public void setMasBuscados(Integer masBuscados) {
+        this.masBuscados = masBuscados;
     }
 
     public int getIdProducto() {

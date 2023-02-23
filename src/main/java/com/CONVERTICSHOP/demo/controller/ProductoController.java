@@ -1,7 +1,6 @@
 package com.CONVERTICSHOP.demo.controller;
 
 import com.CONVERTICSHOP.demo.modelo.Producto;
-import com.CONVERTICSHOP.demo.modelo.Usuario;
 import com.CONVERTICSHOP.demo.services.ProductoService.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -42,14 +39,36 @@ public class ProductoController {
     }*/
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Producto> createProducto(@RequestBody Producto producto) throws Exception {
+    private ResponseEntity<Producto> createProducto(@RequestBody Producto producto) throws Exception {
+        try{
         return new ResponseEntity<>(productoService.crearProducto(producto), HttpStatus.CREATED);
+    }catch (Exception e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
+/*
 
-    /*@GetMapping (value = "/genero/{idGenero}")
-    public ResponseEntity<List<Producto>> getProductosPorGenero(@PathVariable("idGenero") Integer idGenero) throws Exception {
-        return ResponseEntity.ok((List<Producto>) productoService.obtenerProductosPorGenero(idGenero));
-    }*/
+    @GetMapping ("/generoparam/{idGenero}")
+   public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable int idGenero)
+            throws Exception {
+        try {
+
+            return ResponseEntity.ok(productoService.getProductoByGenero(idGenero));
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+*/
+
+
+
+
+    /*@GetMapping("/products/masbuscados")
+    public List<Producto> getLosMasBuscados() {
+
+        return productRepository.findTop10ByOrderBySearchCountDesc();
+    }
+}*/
 
 
 
