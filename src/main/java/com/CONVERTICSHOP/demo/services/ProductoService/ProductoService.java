@@ -19,9 +19,13 @@ public interface ProductoService {
 
     String borrarProducto(Integer idTipoDocumento) throws Exception;
 
-    Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception;
+    List<Producto> getProductoByGenero(Integer idGenero);
 
-   /* @Query(value = "FROM producto where genero = :idGenero")
+    /* List<Producto> getProductoByGenero(String genero);*/
+
+    /*Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception;*/
+
+    /*@Query(value = "FROM producto where genero = :idGenero")
     List<Producto> getProductoByGenero(int idGenero);*/
 
 

@@ -1,6 +1,7 @@
 package com.CONVERTICSHOP.demo.modelo;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity

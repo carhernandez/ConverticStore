@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -40,7 +41,8 @@ public class UsuarioController {
         Boolean Login = usuariosServices.Login(usuario.getCorreo(), usuario.getContrasena());
         if (Login) {
             System.out.println("usuario  logueado");
-            return ResponseEntity.status(HttpStatus.OK).body("{\"status\"Error:\"}");
+            System.out.println("{\"status\"Error:\"}");
+            return ResponseEntity.status(HttpStatus.OK).body("{\"status\":\"success\"}");
         }else{
             System.out.println("usuario no logueado");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

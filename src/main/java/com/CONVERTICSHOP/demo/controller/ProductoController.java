@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -46,10 +47,9 @@ public class ProductoController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-/*
 
     @GetMapping ("/generoparam/{idGenero}")
-   public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable int idGenero)
+   public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable Integer idGenero)
             throws Exception {
         try {
 
@@ -58,8 +58,17 @@ public class ProductoController {
             throw new RuntimeException(e.getMessage());
         }
     }
-*/
+/*
+    @GetMapping ("/generoparam/{idGenero}")
+    public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable String genero)
+            throws Exception {
+        try {
 
+            return ResponseEntity.ok((List<Producto>) productoService.getProductoByGenero(genero));
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }*/
 
 
 

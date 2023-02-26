@@ -1,16 +1,12 @@
 package com.CONVERTICSHOP.demo.services.ProductoService;
 
-import com.CONVERTICSHOP.demo.modelo.*;
-import com.CONVERTICSHOP.demo.repository.GeneroRepository;
+import com.CONVERTICSHOP.demo.modelo.Producto;
 import com.CONVERTICSHOP.demo.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ProductServicesImpl implements ProductoService {
@@ -23,44 +19,7 @@ public class ProductServicesImpl implements ProductoService {
     @Override
     @Transactional
     public List<Producto> obtenerTodos() throws Exception {
-        return productoRepository.findAll();
-    }
-
-    @Override
-    @Transactional
-    public Producto actualizarProducto(Integer idProducto) throws Exception {
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public String borrarProducto(Integer idTipoDocumento) throws Exception {
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception {
-        return null;
-    }
-
-   /* @Override
-    public Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception {
-        return (Producto) productoRepository.findByIdGenero(idGenero).get(idGenero);
-    }*/
-
-    /*@Override
-    @Transactional
-    public List<Producto> getProductoByGenero(int idGenero) {
-        List<Producto> productos = productoRepository.getProductoByGenero(idGenero);
-        productos.forEach(producto -> {
-            System.out.println(producto.toString());
-        });
-
-        return productoRepository.getProductoByGenero(idGenero);
-    }*/
-
-
+        return productoRepository.findAll();   }
 
     @Override
     @Transactional
@@ -74,6 +33,27 @@ public class ProductServicesImpl implements ProductoService {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+        @Override
+        public Producto actualizarProducto (Integer idProducto) throws Exception {
+            return null;
+        }
+
+        @Override
+        public String borrarProducto (Integer idTipoDocumento) throws Exception {
+            return null;
+        }
+
+    @Override
+    public List<Producto> getProductoByGenero(Integer idGenero) {
+        return productoRepository.getByGenero_idGenero(idGenero);
+    }
+
+
+
+
+
+
 
        /* public void incrementarContadorBusquedas (Integer idProducto) throws Exception {
                 Optional < Producto > contadorProducto = productoRepository.findById(idProducto);
@@ -218,4 +198,8 @@ public class ProductServicesImpl implements ProductoService {
 
 
     }
-}
+
+
+
+
+
