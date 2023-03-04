@@ -21,6 +21,8 @@ public interface ProductoService {
 
     List<Producto> getProductoByGenero(Integer idGenero);
 
+    List<Producto> getProductoByDescripcionOrColorOrMarca(String descripcion, String color, String marca);
+
     /* List<Producto> getProductoByGenero(String genero);*/
 
     /*Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception;*/

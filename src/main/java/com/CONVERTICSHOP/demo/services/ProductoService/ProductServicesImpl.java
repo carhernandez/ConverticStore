@@ -4,7 +4,10 @@ import com.CONVERTICSHOP.demo.modelo.Producto;
 import com.CONVERTICSHOP.demo.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,15 +53,32 @@ public class ProductServicesImpl implements ProductoService {
         return productoRepository.getByGenero_idGenero(idGenero);
     }
 
+    @Override
+    public List<Producto> getProductoByDescripcionOrColorOrMarca(@PathVariable String descripcion,
+                                                                 @PathVariable String color,
+                                                                 @PathVariable String marca) {
+        try {
+
+            List<Producto> productoList = productoRepository.getProductoByDescripcionOrColor_colorOrMarca_idMarca(descripcion,color,marca);
+            for (Producto producto : productoList) {
+                incrementarContadorBusquedas(producto);
+            }
+            return productoList;
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+         return null;
+        }
 
 
-       /* public void incrementarContadorBusquedas (Integer idProducto) throws Exception {
-                Optional < Producto > contadorProducto = productoRepository.findById(idProducto);
-        if (contadorProducto.isPresent()) {
-            Producto producto1 = contadorProducto.get();
-            producto.setMasBuscados(producto.getMasBuscados() + 1);
-            productoRepository.save(producto1);
-        }*/
+    }
+
+
+
+       public void incrementarContadorBusquedas (Producto producto) throws Exception {
+               producto.setMasBuscados(producto.getMasBuscados() + 1);
+               productoRepository.save(producto);
+       }
 
     @Transactional
     public boolean validateInventory(Integer productId, int cantidad) {

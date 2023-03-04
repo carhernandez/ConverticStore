@@ -2,6 +2,8 @@ package com.CONVERTICSHOP.demo.modelo;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -45,7 +47,7 @@ public class Producto {
     }
 
     public Integer getMasBuscados() {
-        return masBuscados;
+        return Objects.isNull(masBuscados) ? 0 : masBuscados;
     }
 
     public void setMasBuscados(Integer masBuscados) {

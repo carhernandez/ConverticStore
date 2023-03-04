@@ -57,6 +57,21 @@ public class ProductoController {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    @GetMapping ("/buscar")
+    public ResponseEntity <List<Producto>> getProductoByDescripcionOrColorOrMarca(@RequestParam(required = false) String descripcion,
+                                                                 @RequestParam(required = false) String color,
+                                                                 @RequestParam(required = false) String marca) {
+
+            return ResponseEntity.ok(productoService.getProductoByDescripcionOrColorOrMarca(descripcion,color,
+                    marca));
+
+
+
+
+    }
+
+
 /*
     @GetMapping ("/generoparam/{idGenero}")
     public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable String genero)
