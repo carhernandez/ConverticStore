@@ -6,6 +6,7 @@ import com.CONVERTICSHOP.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -30,16 +31,20 @@ public class UsuariosServicesImpl implements UsuarioService {
     }
 
     @Override
-    @Transactional
+    @Transactional//(value = "transactionManager", propagation = Propagation.REQUIRES_NEW, rollbackFor = {Throwable.class})
     public Usuario crearUsuario(Usuario usuario) throws Exception {
         try {
                 usuario.setTipoDocumento
                         (tipoDocumentoRepository.findById(usuario.getTipoDocumento().getIdTipoDocumento()).get());
-
+                validarContrasena(usuario.getContrasena());
             return usuarioRepository.save(usuario);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+
+    private void validarContrasena(String contrasena) {
+
     }
 
     @Override

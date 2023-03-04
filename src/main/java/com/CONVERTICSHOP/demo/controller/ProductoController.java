@@ -52,7 +52,6 @@ public class ProductoController {
    public ResponseEntity<List<Producto>> getProductosByGenero(@PathVariable Integer idGenero)
             throws Exception {
         try {
-
             return ResponseEntity.ok(productoService.getProductoByGenero(idGenero));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

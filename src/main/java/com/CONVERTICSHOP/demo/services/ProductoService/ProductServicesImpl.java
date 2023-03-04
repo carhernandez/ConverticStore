@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServicesImpl implements ProductoService {
@@ -51,10 +52,6 @@ public class ProductServicesImpl implements ProductoService {
 
 
 
-
-
-
-
        /* public void incrementarContadorBusquedas (Integer idProducto) throws Exception {
                 Optional < Producto > contadorProducto = productoRepository.findById(idProducto);
         if (contadorProducto.isPresent()) {
@@ -62,6 +59,24 @@ public class ProductServicesImpl implements ProductoService {
             producto.setMasBuscados(producto.getMasBuscados() + 1);
             productoRepository.save(producto1);
         }*/
+
+    @Transactional
+    public boolean validateInventory(Integer productId, int cantidad) {
+        Optional<Producto> optionalInventory = productoRepository.findById(productId);
+        if (optionalInventory.isPresent()) {
+            Producto producto = optionalInventory.get();
+            if (producto.getCantidad() >= cantidad) {
+                producto.setCantidad(producto.getCantidad() - cantidad);
+                productoRepository.save(producto);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 
 
 

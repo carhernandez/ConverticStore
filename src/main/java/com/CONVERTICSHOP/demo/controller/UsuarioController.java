@@ -17,6 +17,7 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioService usuariosServices;
+
     @GetMapping("")
     public String registro() {
         return "/administrador/LOGIN";
@@ -26,13 +27,14 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> getAllUsuarios() throws Exception {
         return ResponseEntity.ok(usuariosServices.obtenerTodos());
     }
+
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuario> createUsuarios(@RequestBody Usuario usuario) throws Exception {
         return new ResponseEntity<>(usuariosServices.crearUsuario(usuario), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{idUsuarios}")
-    public ResponseEntity<String>  borrarUsuario(@PathVariable Integer idUsuarios) throws Exception {
+    public ResponseEntity<String> borrarUsuario(@PathVariable Integer idUsuarios) throws Exception {
         return ResponseEntity.ok(usuariosServices.borrarUsuario(idUsuarios));
     }
 
@@ -41,19 +43,22 @@ public class UsuarioController {
         Boolean Login = usuariosServices.Login(usuario.getCorreo(), usuario.getContrasena());
         if (Login) {
             System.out.println("usuario  logueado");
-            System.out.println("{\"status\"Error:\"}");
             return ResponseEntity.status(HttpStatus.OK).body("{\"status\":\"success\"}");
-        }else{
+        } else {
             System.out.println("usuario no logueado");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
-
-
-
         /*(usuariosServices.findByCorreoElectronicoAndContrasena(usuario.getCorreoElectronico(), usuario.getContrasena());*/
-                /*HttpStatus(HttpStatus.OK).OK).body("{\"mensaje\": \"Usuario logeado correctamente\"}")*/
+        /*HttpStatus(HttpStatus.OK).OK).body("{\"mensaje\": \"Usuario logeado correctamente\"}")*/
     }
+
+    @RequestMapping("/logout")
+    public ResponseEntity<String> Logout(@RequestBody Usuario usuario) throws Exception {
+
+        return null;
+    }
+}
 
 
      /*public ModelAndView login() {
@@ -80,6 +85,7 @@ public class UsuarioController {
         return "redirect:/login";
 
     }*/
+
 
 
 
@@ -112,7 +118,7 @@ public class UsuarioController {
 
 
 
-}
+
 
 
 
