@@ -12,11 +12,9 @@ public class Producto {
     @Column(name = "id_producto")
     private int idProducto;
     private String descripcion;
-
     @ManyToOne(targetEntity = Marca.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "marca", referencedColumnName = "id_marca")
     private Marca marca;
-
     @ManyToOne(targetEntity = Color.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "color", referencedColumnName = "id_color")
     private Color color;
@@ -28,14 +26,14 @@ public class Producto {
     private Talla talla;
     private Float valor;
     private Integer cantidad;
-
+    private String imagen;
     private Integer masBuscados;
 
     public Producto() {
     }
 
-    public Producto(String descripcion, Marca marca, Color color, Genero genero, Talla talla, Float valor,
-                    Integer cantidad, Integer masBuscados) {
+    public Producto(String descripcion, Marca marca, Color color,
+                    Genero genero, Talla talla, Float valor, Integer cantidad, String imagen, Integer masBuscados) {
         this.descripcion = descripcion;
         this.marca = marca;
         this.color = color;
@@ -43,7 +41,16 @@ public class Producto {
         this.talla = talla;
         this.valor = valor;
         this.cantidad = cantidad;
+        this.imagen = imagen;
         this.masBuscados = masBuscados;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Integer getMasBuscados() {
@@ -116,6 +123,22 @@ public class Producto {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", descripcion='" + descripcion + '\'' +
+                ", marca=" + marca +
+                ", color=" + color +
+                ", genero=" + genero +
+                ", talla=" + talla +
+                ", valor=" + valor +
+                ", cantidad=" + cantidad +
+                ", imagen='" + imagen + '\'' +
+                ", masBuscados=" + masBuscados +
+                '}';
     }
 }
 
