@@ -31,7 +31,7 @@ public class UsuariosServicesImpl implements UsuarioService {
     }
 
     @Override
-    @Transactional//(value = "transactionManager", propagation = Propagation.REQUIRES_NEW, rollbackFor = {Throwable.class})
+    @Transactional(value = "transactionManager", propagation = Propagation.REQUIRES_NEW, rollbackFor = {Throwable.class})
     public Usuario crearUsuario(Usuario usuario) throws Exception {
         try {
                 usuario.setTipoDocumento

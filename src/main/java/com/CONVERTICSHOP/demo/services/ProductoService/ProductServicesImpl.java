@@ -4,8 +4,6 @@ import com.CONVERTICSHOP.demo.modelo.Producto;
 import com.CONVERTICSHOP.demo.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -75,13 +73,45 @@ public class ProductServicesImpl implements ProductoService {
 
 
 
-       public void incrementarContadorBusquedas (Producto producto) throws Exception {
+   /* @Override
+    public List<Producto> findTop4ByOrderByBusquedaDesc(int masBuscados) throws Exception {
+        try {
+            return productoRepository.findTop4ByOrderByBusquedaDesc();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }*/
+
+
+
+    @Override
+    public List<Producto> obtenerProductosPorGenero(String genero) {
+        return productoRepository.getByGenero(genero);
+    }
+
+    @Override
+    public Producto getProductoPorId(Integer idProducto) {
+        return productoRepository.findById(idProducto).get();
+    }
+
+    /*@Override
+    public List<Producto> findTop04ByOrderBySearchCountDesc() {
+        return List<Producto> productoRepository.findTop04ByOrderBySearchCountDesc();
+    }
+*/
+  /*  @Override
+    public List<Producto> findTop10ByOrderBySearchCountDesc() {
+        return null;
+    }*/
+
+
+    public void incrementarContadorBusquedas (Producto producto) throws Exception {
                producto.setMasBuscados(producto.getMasBuscados() + 1);
                productoRepository.save(producto);
        }
 
     @Transactional
-    public boolean validateInventory(Integer productId, int cantidad) {
+    public boolean validarInventorio(Integer productId, int cantidad) {
         Optional<Producto> optionalInventory = productoRepository.findById(productId);
         if (optionalInventory.isPresent()) {
             Producto producto = optionalInventory.get();

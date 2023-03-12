@@ -14,21 +14,27 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(name = "correo")
-    @Email(message = "por favor ingrese un correo electronico valido")
+    @Column(name = "correo", nullable = false)
+    @Email(message = "Por favor ingrese un correo electronico valido")
     private String correo;
     @ManyToOne(targetEntity = TipoDocumento.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo_documento", referencedColumnName = "id_tipo_documento")
     TipoDocumento tipoDocumento;
-    @Column(name = "n_documento")
+
+    @Column(name = "n_documento", nullable = false)
     private Integer nDocumento;
-    @Column(name = "nombres")
+
+    @Pattern(regexp = "[a-zA-Z\\s]+", message = "nombres solo se permiten letras y espacios")
+    @Column(name = "nombres", nullable = false)
     private String nombres;
-    @Column(name = "apellidos")
+    @Pattern(regexp = "[a-zA-Z\\s]+",message = "apellidos solo se permiten letras y espacios")
+    @Column(name = "apellidos", nullable = false)
     private String apellidos;
-    @Column(name = "contrasena")
-    //@Pattern(regexp = "(?=^.{5,}$)((?=.\\d)(?=.[A-Z])(?=.[a-z])|(?=.\\d)(?=.[^A-Za-z0-9])(?=.[a-z])|(?=.[^A-Za-z0-9])(?=.[A-Z])(?=.[a-z])|(?=.\\d)(?=.[A-Z])(?=.[^A-Za-z0-9]))^.*", message = "contraseña debe ser de longitud mínima 5, y debe contener letras mayúsculas,\n" +
-            //"letras minúsculas y números.\n")
+
+    @Column(name = "contrasena", nullable = false)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[!#$%&*@?])(?!\\s)[a-zA-Z\\d!#$%&*@?]{5,16}$",
+     message = "contraseña debe ser de longitud mínima 5, y debe contener letras mayúsculas,\\n" +
+    "letras minúsculas y números.\n")
     private String contrasena;
 
     public Usuario() {

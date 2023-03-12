@@ -23,12 +23,8 @@ public interface ProductoService {
 
     List<Producto> getProductoByDescripcionOrColorOrMarca(String descripcion, String color, String marca);
 
-    /* List<Producto> getProductoByGenero(String genero);*/
+    Object obtenerProductosPorGenero(String genero);
 
-    /*Producto obtenerProductoPorIdGenero(Integer idGenero) throws Exception;*/
-
-    /*@Query(value = "FROM producto where genero = :idGenero")
-    List<Producto> getProductoByGenero(int idGenero);*/
-
+    Producto getProductoPorId(Integer idProducto);
 
 }
