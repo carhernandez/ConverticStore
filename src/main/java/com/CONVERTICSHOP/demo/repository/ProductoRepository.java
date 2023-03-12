@@ -21,5 +21,5 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
 
 
-    /*List<Producto> findTop4ByOrderByBusquedaDesc();*/
+    List<Producto> findTop4ByOrderByMasBuscadosDesc();
 }

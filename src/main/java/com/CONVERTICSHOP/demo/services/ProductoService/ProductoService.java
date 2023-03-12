@@ -27,4 +27,6 @@ public interface ProductoService {
 
     Producto getProductoPorId(Integer idProducto);
 
+    List<Producto> findProductosMasBuscados();
+
 }

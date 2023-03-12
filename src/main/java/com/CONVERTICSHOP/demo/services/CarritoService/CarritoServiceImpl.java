@@ -23,7 +23,7 @@ public class CarritoServiceImpl implements CarritoService {
     TallaRepository tallaRepository;
 
     @Override
-    public Carrito registrarProducto(Carrito carrito) throws Exception {
+    public Carrito registrarCarrito(Carrito carrito) throws Exception {
         try {
             return carritoRepository.save(carrito);
 

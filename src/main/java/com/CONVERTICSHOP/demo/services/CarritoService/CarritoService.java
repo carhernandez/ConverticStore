@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CarritoService {
 
-    Carrito registrarProducto(Carrito carrito) throws Exception;
+    Carrito registrarCarrito(Carrito carrito) throws Exception;
 
     List<Carrito> obtenerCarritoPorUsuarioId(Integer idUsuario) throws Exception;
 

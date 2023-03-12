@@ -78,7 +78,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{idProducto}")
-    public ResponseEntity <Producto> getProductoPorId(@PathVariable Integer idProducto)
+    public ResponseEntity<Producto> getProductoPorId(@PathVariable Integer idProducto)
             throws Exception {
         try {
             return ResponseEntity.ok(productoService.getProductoPorId(idProducto));
@@ -88,16 +88,16 @@ public class ProductoController {
     }
 
 
-    /*@GetMapping ("/masbuscados")
-    public ResponseEntity<?> obtenerProductosMasBuscados(){
-            try {
-                return ResponseEntity.status(HttpStatus.OK).body(productoService.obtenerProductosMasBuscados());
-            }catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\":\"Error. no se encuentran productos\"}");
+    @GetMapping("/masbuscados")
+    public ResponseEntity<?> obtenerProductosMasBuscados() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productoService.findProductosMasBuscados());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\":\"Error. no se encuentran productos\"}");
 
-            }*/
+        }
+
+    }
 
 }
-
-
 

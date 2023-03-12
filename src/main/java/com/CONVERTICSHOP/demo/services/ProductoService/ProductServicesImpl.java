@@ -73,14 +73,11 @@ public class ProductServicesImpl implements ProductoService {
 
 
 
-   /* @Override
-    public List<Producto> findTop4ByOrderByBusquedaDesc(int masBuscados) throws Exception {
-        try {
-            return productoRepository.findTop4ByOrderByBusquedaDesc();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }*/
+    @Override
+    public List<Producto> findProductosMasBuscados() {
+            return productoRepository.findTop4ByOrderByMasBuscadosDesc();
+
+    }
 
 
 
