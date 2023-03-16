@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
-    /*@Query("FROM Producto where genero.genero = :genero")*/
+
     List<Producto> getByGenero_idGenero (Integer idGenero);
 
     // @Query("SELECT p FROM Producto p WHERE (LOWER(p.descripcion) LIKE LOWER(CONCAT('%',?1,'%'))  " +

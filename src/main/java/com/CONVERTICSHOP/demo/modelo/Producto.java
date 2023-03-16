@@ -32,9 +32,9 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String descripcion, Marca marca, Color color,
-                    Genero genero, Talla talla, Float valor, Integer cantidad, String imagen, Integer masBuscados) {
+    public Producto(String descripcion, Marca marca, Color color, Genero genero, Talla talla, Float valor, Integer cantidad, String imagen, Integer masBuscados) {
         this.descripcion = descripcion;
+
         this.marca = marca;
         this.color = color;
         this.genero = genero;
@@ -44,6 +44,7 @@ public class Producto {
         this.imagen = imagen;
         this.masBuscados = masBuscados;
     }
+
 
     public String getImagen() {
         return imagen;

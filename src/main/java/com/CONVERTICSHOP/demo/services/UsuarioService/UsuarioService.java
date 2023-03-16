@@ -21,4 +21,7 @@ public interface UsuarioService  {
    Boolean Login (String correoElectronico, String contrasena) throws Exception;
 
 
+    Boolean Logout(String correo);
+
+    Usuario obtenerUsuarioPorCorreo(String correo) throws Exception;
 }

@@ -22,6 +22,20 @@ public class CarritoServiceImpl implements CarritoService {
     @Autowired
     TallaRepository tallaRepository;
 
+    public List<Carrito> findAll() throws Exception {
+        try{
+            return carritoRepository.findAll();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
+    @Override
+    public Carrito obtenerCarrito(Integer idCarrito) {
+        return carritoRepository.findById(idCarrito).get();
+    }
+
     @Override
     public Carrito registrarCarrito(Carrito carrito) throws Exception {
         try {
@@ -33,7 +47,7 @@ public class CarritoServiceImpl implements CarritoService {
         }
     }
 
-    @Override
+    /*@Override
     public List<Carrito> obtenerCarritoPorUsuarioId(Integer idUsuario) throws Exception {
         try {
             return carritoRepository.getByUsuario(idUsuario);
@@ -42,7 +56,7 @@ public class CarritoServiceImpl implements CarritoService {
 
             throw new Exception(e.getMessage());
         }
-    }
+    }*/
 
     @Override
     public void delete(Integer id) throws Exception {
@@ -59,6 +73,8 @@ public class CarritoServiceImpl implements CarritoService {
     public void actualizarInventario(Integer id) throws Exception {
 
     }
+
+
 
 /*    @Override
     public void actualizarInventario(Integer id) throws Exception {

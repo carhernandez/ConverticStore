@@ -91,6 +91,21 @@ public class UsuariosServicesImpl implements UsuarioService {
 
     }
 
+    @Override
+    public Boolean Logout(String correo) {
+        return null;
+    }
+
+    @Override
+    public Usuario obtenerUsuarioPorCorreo(String correo) throws Exception {
+        try {
+            return usuarioRepository.findByCorreo(correo);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
 
 }
 

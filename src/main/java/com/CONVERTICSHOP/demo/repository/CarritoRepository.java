@@ -11,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface CarritoRepository extends JpaRepository<Carrito, Integer> {
-    @Query("FROM CarritoCompra WHERE usuario.id=:id")
-    List<Carrito> getByUsuario(Integer idUsuario);
+    /*@Query("FROM CarritoCompra WHERE usuario.id=:id")
+    List<Carrito> getByUsuario(Integer idUsuario);*/
 
   /*  List<Carrito> findCarritoCompraByUsuarioId(Integer id);*/
 

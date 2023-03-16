@@ -48,15 +48,19 @@ public class UsuarioController {
             System.out.println("usuario no logueado");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-
-        /*(usuariosServices.findByCorreoElectronicoAndContrasena(usuario.getCorreoElectronico(), usuario.getContrasena());*/
-        /*HttpStatus(HttpStatus.OK).OK).body("{\"mensaje\": \"Usuario logeado correctamente\"}")*/
     }
 
     @RequestMapping("/logout")
     public ResponseEntity<String> Logout(@RequestBody Usuario usuario) throws Exception {
+        Boolean logout = usuariosServices.Logout(usuario.getCorreo());
+
 
         return null;
+    }
+
+    @GetMapping ("/{correo}")
+    public ResponseEntity<Usuario> obtenerCorreo(@PathVariable String correo) throws Exception {
+        return ResponseEntity.ok(usuariosServices.obtenerUsuarioPorCorreo(correo));
     }
 }
 

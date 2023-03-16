@@ -10,7 +10,7 @@ public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carrito")
-    private int idCarrito;
+    private Integer idCarrito;
     @Column(name = "fecha")
     private LocalDate fecha;
     @Column(name = "estado")
