@@ -1,0 +1,131 @@
+
+
+CREATE TABLE tipo_documento (
+	id_tipo_documento serial4 NOT NULL,
+	Documento varchar(100) NOT NULL,	
+	 CONSTRAINT Id_tipo_documento_pk PRIMARY KEY (Id_tipo_documento)
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE usuario (
+	Id_usuario serial4 NOT NULL,	
+	Correo_Electronico varchar(100) NOT NULL,
+	tipo_documento int REFERENCES tipo_documento(id_tipo_documento)
+	ON DELETE restrict,
+	N_Documento Integer not null,
+	Nombres varchar(100) NOT NULL,
+	Apellidos varchar(100) NOT NULL,	
+	Contrasena varchar(100) NOT NULL,		
+	CONSTRAINT id_usuario_pk PRIMARY KEY (Id_usuario)		
+) WITH (
+  OIDS=FALSE
+);
+
+
+CREATE TABLE Genero (
+	Id_Genero serial4 NOT NULL,	
+	Genero Varchar(50),		
+	CONSTRAINT id_Genero_pk PRIMARY KEY (Id_Genero)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE Talla  (
+	Id_Talla serial4 NOT NULL,	
+	Talla varchar (10),		
+	CONSTRAINT id_Talla_pk PRIMARY KEY (Id_Talla)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE color  (
+	Id_color serial4 NOT NULL,	
+	color varchar (100) NOT NULL,		
+	CONSTRAINT id_color_pk PRIMARY KEY (Id_color)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+
+CREATE TABLE marca  (
+	Id_marca  serial4 NOT NULL,	
+	marca  varchar (100) NOT NULL,		
+	CONSTRAINT id_marca_pk PRIMARY KEY (Id_marca)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE producto (
+	id_Producto serial4 NOT NULL,	
+	descripcion varchar (100) not NULL,
+	Valor Integer NOT NULL,
+	cantidad Integer NOT NULL,
+	Id_marca int REFERENCES marca(Id_marca)
+	ON DELETE RESTRICT,
+	id_color int REFERENCES color(id_color)
+	ON DELETE RESTRICT,
+	id_genero int REFERENCES genero(id_genero)
+	ON DELETE RESTRICT,	
+	id_talla int REFERENCES talla(id_talla)
+	ON DELETE RESTRICT,
+	CONSTRAINT id_Producto_pk PRIMARY KEY (Id_Producto)	
+	) WITH (
+	  OIDS=FALSE
+	);	
+
+CREATE TABLE carrito  (
+	Id_carrito  serial4 NOT NULL,
+	id_Producto int REFERENCES producto(id_Producto)
+	ON DELETE RESTRICT,	
+	Id_usuario int REFERENCES usuario(Id_usuario)
+	ON DELETE RESTRICT,
+	cantidad Integer NOT NULL,	
+	CONSTRAINT id_carrito_pk PRIMARY KEY (id_carrito)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+
+CREATE TABLE Factura (
+	Id_Factura serial4 NOT NULL,
+	Fecha DATE NOT NULL,
+	Id_carrito int REFERENCES carrito(Id_carrito)
+	ON DELETE RESTRICT,	
+	Id_usuario int REFERENCES usuario(Id_usuario)
+	ON DELETE RESTRICT,	
+	Iva decimal NOT null,
+	Total Decimal not null,		
+	CONSTRAINT Id_Factura_pk PRIMARY KEY (Id_Factura)			 
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE ciudad  (
+	id_ciudad  serial4 NOT NULL,
+	ciudad Varchar(200)NOT NULL, 	
+	CONSTRAINT id_ciudad_pk PRIMARY KEY (id_ciudad)	 	 
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE envio (
+	Id_envio serial4 NOT NULL,
+	Fecha DATE NOT NULL,
+	id_factura int REFERENCES factura(id_factura)
+	ON DELETE restrict,	
+	id_ciudad int REFERENCES factura(id_factura)
+	ON DELETE restrict,
+	Direccion Varchar (100) NOT NULL,
+	telefono Varchar (20) NOT null,			
+	CONSTRAINT Id_envio_pk PRIMARY KEY (Id_envio)			 
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+
+Select * FROM producto where genero = 1;
+
+select * FROM producto where genero = :idGenero"
